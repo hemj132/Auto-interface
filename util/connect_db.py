@@ -4,11 +4,11 @@ import json
 class OperationMysql:
 	def __init__(self):
 		self.conn = pymysql.connect(
-			host='172.30.200.61',
+			host='172.30.200.01',
 			port=3306,
-			user='zdkj',
-			passwd='lmM#dIu.6K',
-			db='zdkj',
+			user='admin',
+			passwd='admin',
+			db='admin',
 			charset='utf8',
 
 			)
