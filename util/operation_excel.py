@@ -1,8 +1,10 @@
 #coding:utf-8
 import xlrd
 from xlutils.copy import copy
+from util.configReader import YamlReader,BASE_PATH
+import os
 class OperationExcel:
-	def __init__(self,file_name='../dataconfig/case1.xls',sheet_id=0):
+	def __init__(self,file_name=os.path.join(BASE_PATH,YamlReader().data["global"]["case_path"]),sheet_id=0):
 
 		self.file_name = file_name
 		self.sheet_id = sheet_id

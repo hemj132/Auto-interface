@@ -5,10 +5,12 @@ from  data import  data_config
 from util.operation_json import OperetionJson
 from util.connect_db import OperationMysql
 import re
+from util.configReader import BASE_PATH,YamlReader
+import os
 import json
 class GetData():
 	def __init__(self,sheet_id=0):
-		self.file_name = '../dataconfig/case1.xls'
+		self.file_name =os.path.join(BASE_PATH,YamlReader().data["global"]["case_path"])
 		self.opera_excel = OperationExcel(file_name=self.file_name,sheet_id=sheet_id)
 
 	#获取sheet名字
@@ -163,8 +165,8 @@ class GetData():
 				rows_count = data.get_case_lines()
 				for i in range(1, rows_count):
 					#是否运行
-					if self.get_is_run(i):
-						case_name = self.get_case_name(i)
+					if data.get_is_run(i):
+						case_name = data.get_case_name(i)
 						case_list.append([sheet_names[sheet_id] ,case_name,sheet_id,i])
 			return case_list
 

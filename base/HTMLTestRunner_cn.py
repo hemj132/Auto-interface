@@ -110,7 +110,7 @@ if PY3K:
 else:
     import StringIO
 import copy
-
+import re
 # ------------------------------------------------------------------------
 # The redirectors below are used to capture output during testing. Output
 # sent to sys.stdout and sys.stderr are automatically captured. However
@@ -503,7 +503,7 @@ a.popup_link:hover {
     color:  #024457;
     border-radius:   10px;
     border: 1px solid #167F92;
-    text-align: center;
+    text-align: left;
 }
 #result_table th {
       border: 1px solid #FFFFFF;
@@ -687,7 +687,8 @@ tr[id^=et]  td { background-color: rgba(249,62,62,.3) !important ; }
 <tr id='%(tid)s' class='%(Class)s'>
     <td><div class='testcase'>%(desc)s</div></td>
     <td colspan='5' align='center'><span class='status %(style)s'>%(status)s</span></td>
-    <td>%(img)s</td>
+     <!--
+    <td>%(img)s</td>-->
 </tr>
 """  # variables: (tid, Class, style, desc, status,img)
 
@@ -906,9 +907,14 @@ class HTMLTestRunner(Template_mixin):
         rmap = {}
         classes = []
         for n, t, o, e in result_list:
-            #cls = t.__class__
+            cls = t.__class__
             #修改
-            cls = t.id().split('.')[-1].split('_')[5]
+            #cls = t.id().split('.')[-1].split('_')[5]
+            temp = t.id()
+            if len(temp.split('.')[-1].split('_'))>=5:
+
+                #cls = t.id().split('.')[-1].split('_')[5]
+                cls = re.findall('test_main_[0-9]+___(.+?)____',temp)[0]
             if not cls in rmap:
                 rmap[cls] = []
                 classes.append(cls)
@@ -1035,7 +1041,11 @@ class HTMLTestRunner(Template_mixin):
         tid = (n == 0 and 'p' or 'f') + 't%s.%s' % (cid + 1, tid + 1)
         name = t.id().split('.')[-1]
         s_list = name.split('_')
-        name = "{0}__{1}__{2}".format(s_list[2],s_list[5],s_list[9])
+        #修改
+        #name = "{0}__{1}__{2}".format(s_list[2],s_list[5],s_list[9])
+        if len(s_list) >=9:
+           # name = "{0}__{1}__{2}".format(s_list[2], s_list[5], s_list[9])
+            name = re.findall('test_main_[0-9]+___(.+?)__[0-9]+__',name)[0]
         if self.verbosity > 1:
             doc = t._testMethodDoc or ''
         else:

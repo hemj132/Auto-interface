@@ -8,3 +8,4 @@ main
     json存放在user.json
     以${}标识，大括号内为json名称，若大括号内有关键字select（不区分大小写），则判断为sql；查询后再拼装
 cookie需具体项目再处理。
+dataconfig/config.yml 配置数据库与执行哪个xls

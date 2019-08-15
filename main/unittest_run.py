@@ -1,7 +1,7 @@
 import os
 import time
 import unittest
-
+from util.configReader import YamlReader
 from base.HTMLTestRunner_cn import HTMLTestRunner
 def run_all_case():
     p_path=os.getcwd().split("main")[0]
@@ -11,7 +11,7 @@ def run_all_case():
     test_app=os.path.join(p_path,"case")
     fp = open(reportfile, 'wb')
     runner = HTMLTestRunner(fp,
-                            title="数据资产管理系统-测试报告",
+                            title="{}-测试报告".format(YamlReader().data["global"]["project_name"]),
                              )
     discover = unittest.defaultTestLoader.discover(test_app , pattern='*_case.py')
 

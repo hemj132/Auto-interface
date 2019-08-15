@@ -1,15 +1,21 @@
 #coding:utf-8
 import pymysql
 import json
+from util.configReader import YamlReader
 class OperationMysql:
 	def __init__(self):
+		self.host = YamlReader().data['mysqldb']['ip']
+		self.port = int(YamlReader().data['mysqldb']['port'])
+		self.user = YamlReader().data['mysqldb']['username']
+		self.passwd = YamlReader().data['mysqldb']['password']
+		self.db = YamlReader().data['mysqldb']['defaultDB']
 		self.conn = pymysql.connect(
-			host='172.30.200.61',
-			port=3306,
-			user='zdkj',
-			passwd='lmM#dIu.6K',
-			db='zdkj',
-			charset='utf8',
+			host=self.host,
+			port=self.port,
+			user=self.user,
+			passwd=self.passwd,
+			db=self.db,
+			charset='utf8'
 
 			)
 		self.cur = self.conn.cursor()

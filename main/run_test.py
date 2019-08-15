@@ -14,7 +14,7 @@ class RunTest:
         self.data = GetData()
         self.com_util = CommonUtil()
         self.send_mai = SendEmail()
-
+        i = 100
     #程序执行的
     def go_on_run(self):
         res = None

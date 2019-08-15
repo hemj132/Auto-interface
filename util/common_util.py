@@ -8,17 +8,17 @@ class CommonUtil:
 		str_one:查找的字符串
 		str_two：被查找的字符串
 		'''
-		# flag = None
-		# if isinstance(str_one,unicode):
+		flag = None
+		# if isinstance(str_one,'unicode'):
 		# 	str_one = str_one.encode('unicode-escape').decode('string_escape')
-		# if str_one in str_two:
-		# 	flag = True
-		# else:
-		# 	flag = False
-		# return flag
+		if str_one in str_two:
+			flag = True
+		else:
+			flag = False
+		return flag
 		#修改为正则表达式格式，更自由
-		result = re.findall(str_one,
-							json.dumps(str_two).encode('latin-1').decode('unicode_escape'))
+		# result = re.findall(str_one,
+		# 					json.dumps(str_two).encode('latin-1').decode('unicode_escape'))
 		return result
 
 
