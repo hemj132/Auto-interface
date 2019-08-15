@@ -1,5 +1,7 @@
 2019-08-07
-
+excel驱动的接口自动化框架
+运用到ddt+unittest+htmltestrunner
+htmltestrunner 魔改了下
 main
     main/run_test.py 不带报告
     main/unittest_run.py 会生成html报告
