@@ -10,5 +10,5 @@ mysqldb:
 global:
   #excel 路径
   case_path: "case/case_point.xls"
-  project_name: "数据资产管理系统"
+  project_name: "系统"
 
